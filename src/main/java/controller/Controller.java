@@ -83,10 +83,14 @@ public class Controller extends HttpServlet {
 	}
 	protected void editarContato(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// teste de recebimento
-		System.out.println(request.getParameter("idcon"));
-		System.out.println(request.getParameter("nome"));
-		System.out.println(request.getParameter("fone"));
-		System.out.println(request.getParameter("email"));
+		// setar as variaveis JavaBeans
+		contato.setIdcon(request.getParameter("idcon"));
+		contato.setNome(request.getParameter("nome"));
+		contato.setFone(request.getParameter("fone"));
+		contato.setEmail(request.getParameter("email"));
+		// executar o método alterarContato
+		dao.alterarContato(contato);
+		// redirecionar o documento agenda.jsp (atualizando as alterações)
+		response.sendRedirect("main");
 	}
 }
