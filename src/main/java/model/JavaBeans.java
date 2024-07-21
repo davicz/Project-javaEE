@@ -15,6 +15,12 @@ public class JavaBeans {
 			this.fone = fone;
 			this.email = email;
 		}
+		
+		/**
+		 * Gets the idcon.
+		 *
+		 * @return the idcon
+		 */
 		public String getIdcon() {
 			return idcon;
 		}

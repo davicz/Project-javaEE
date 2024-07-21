@@ -19,37 +19,19 @@ import com.itextpdf.text.pdf.PdfWriter;
 import model.DAO;
 import model.JavaBeans;
 
-// TODO: Auto-generated Javadoc
-/**
- * The Class Controller.
- */
 @WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update", "/delete", "/report" })
 public class Controller extends HttpServlet {
-	
-	/** The Constant serialVersionUID. */
+
 	private static final long serialVersionUID = 1L;
-	
-	/** The dao. */
+
 	DAO dao = new DAO();
-	
-	/** The contato. */
+
 	JavaBeans contato = new JavaBeans();
 
-	/**
-	 * Instantiates a new controller.
-	 */
 	public Controller() {
 		super();
 	}
 
-	/**
-	 * Do get.
-	 *
-	 * @param request the request
-	 * @param response the response
-	 * @throws ServletException the servlet exception
-	 * @throws IOException Signals that an I/O exception has occurred.
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String action = request.getServletPath();
