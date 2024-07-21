@@ -13,12 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import model.DAO;
 import model.JavaBeans;
 
-@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update"})
+@WebServlet(urlPatterns = { "/Controller", "/main", "/insert", "/select", "/update", "/delete" })
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	DAO dao = new DAO();
 	JavaBeans contato = new JavaBeans();
-	
+
 	public Controller() {
 		super();
 	}
@@ -35,7 +35,9 @@ public class Controller extends HttpServlet {
 		} else if (action.equals("/select")) {
 			listarContato(request, response);
 		} else if (action.equals("/update")) {
-			editarContato(request, response); 
+			editarContato(request, response);
+		} else if (action.equals("/delete")) {
+			removerContato(request, response);
 		} else {
 			response.sendRedirect("index.html");
 		}
@@ -51,6 +53,7 @@ public class Controller extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("agenda.jsp");
 		rd.forward(request, response);
 	}
+
 	// Novo contato
 	protected void novoContato(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -63,6 +66,7 @@ public class Controller extends HttpServlet {
 		// redirecionar para o documento agenda.jsp
 		response.sendRedirect("main");
 	}
+
 	// editar contato
 	protected void listarContato(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -81,6 +85,7 @@ public class Controller extends HttpServlet {
 		RequestDispatcher rd = request.getRequestDispatcher("editar.jsp");
 		rd.forward(request, response);
 	}
+
 	protected void editarContato(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// setar as variaveis JavaBeans
@@ -90,6 +95,19 @@ public class Controller extends HttpServlet {
 		contato.setEmail(request.getParameter("email"));
 		// executar o método alterarContato
 		dao.alterarContato(contato);
+		// redirecionar o documento agenda.jsp (atualizando as alterações)
+		response.sendRedirect("main");
+	}
+
+	// remover um contato
+	protected void removerContato(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// recebimento do id do contato a ser excluido (validador.js)
+		String idcon = request.getParameter("idcon");
+		// setar a variavel no JavaBeans
+		contato.setIdcon(idcon);
+		// executar o método deletarContato (DAO) passando o objeto contato
+		dao.deletarContato(contato);
 		// redirecionar o documento agenda.jsp (atualizando as alterações)
 		response.sendRedirect("main");
 	}
