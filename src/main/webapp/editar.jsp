@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Agenda de contatos</title>
+<title>Agenda de contatos - Editar</title>
 <link rel="icon" href="imagens/favicon.png">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<h1>Editar novo contato</h1>
+	<h1>Editar contato</h1>
 	<form name="frmContato" action="update">
 		<table>
 			<tr>
